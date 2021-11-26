@@ -1,0 +1,4 @@
+﻿  MainForm.cpp
+C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\Perlin-Noise\MainForm.cpp(15,1): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  MainForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Perlin-Noise.vcxproj -> C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\x64\Release\Perlin-Noise.exe
