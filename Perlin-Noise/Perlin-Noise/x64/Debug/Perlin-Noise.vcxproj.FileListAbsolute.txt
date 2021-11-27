@@ -1,1 +1,3 @@
 C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\Perlin-Noise\x64\Debug\Perlin-Noise.vcxproj.AssemblyReference.cache
+C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\Perlin-Noise\x64\Debug\PerlinNoise.MainForm.resources
+C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\Perlin-Noise\x64\Debug\Perlin-Noise.vcxproj.GenerateResource.cache

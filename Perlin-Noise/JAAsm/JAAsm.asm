@@ -15,52 +15,6 @@ VFMADD231SD xmm0,xmm1,xmm2	;xmm0+=(xmm1*xmm2)
 RET ;result in XMM0
 interpolate ENDP
 
-;_m128 randomGradient(int x, int y, unsigned char* hashTable, unsigned short hashTableSize)
-; x in ecx, y in edx, hashTable in rsi, hashTableSize in r9w
-randomGradient PROC ; USE rsi,r8,rax,rcx,rdx,r9,xmm0,xmm1
-MOV rsi, r8
-MOVSXD rax,edx				;rax<-y (sign extended)
-CQO							;rax:rdx<-sign extend of rax
-MOVZX r9,r9w				;r9 <- hashTableSize (zero extended)
-IDIV r9						;y/hashTableSize, rax<-quotient of division, rdx<-remainder of division
-TEST rdx,rdx				;set sign flag of remainder
-JNS yIndexPositive			
-ADD rdx,r9					;if remainder was negatvie, add table size
-yIndexPositive:
-MOVSXD rax,ecx				;rax<-x (sign extended)
-MOVZX r8, BYTE PTR[rsi+rdx]	;r8<-hashTable[yIndex] (zero extended)
-ADD eax, r8d				;xIndex = hashTable[yIndex] + x
-CQO							;rax:rdx<-sign extend of rax
-IDIV r9						;xIndex/hashTableSize, rax<-quotient of division, rdx<-remainder of division
-TEST rdx,rdx				;set sign flag of remainder
-JNS xIndexPositive
-ADD rdx,r9					;if remainder was negatvie, add table size
-xIndexPositive:
-MOVZX rax, BYTE PTR[rsi+rdx];rax<-hashTable[xIndex] (zero extended)
-
-MOV rax, rdx				;move ramainder to rax
-AND al, 2					;extract older bit of remainder
-SHL rax, 62					;move it to most significant position
-AND dl, 1					;extract younger bit of remainder
-SHL rdx, 63					;move it to most significant position
-MOVQ xmm1, rax				;move the older bit of remainder to lower quadword of xmm1
-PSLLDQ xmm1, 8				;shift it to uper quadword
-MOVQ xmm1,rdx				;move the younger bit of remainder to lower quadword of xmm1
-MOVUPD xmm0, minusOnes		
-MOVUPD XMMWORD PTR[rsi-16], xmm0			;store (-1.0,-1.0) in temporary variable
-MOVUPD xmm0, ones
-VMASKMOVPD XMMWORD PTR[rsi-16], xmm1, xmm0	;store 1.0 in temporary variable, in appropirate quadwords
-MOVUPD xmm0, XMMWORD PTR[rsi-16]			;load result to xmm0
-RET											;return from procedure, x component of gradient in upper quadword of xmm0, y component in lower quadword of xmm0
-randomGradient ENDP
-
-
-;double dotGridGradient(int gridX, int gridY, double pointX, double pointY, unsigned char* hashTable, unsigned short hashTableSize)
-;gridX in rcx, gridY in rdx, pointX in xmm2, pointY in xmm3, hashTable in rsi, hashTableSize in r9w
-dotGridGradient PROC
-
-dotGridGradient ENDP
-
 ;unsigned short getIndexY(int y, unsigned char* hashTable, unsigned short hashTableSize)
 ;y in xmm0, hashTable in rsi, hashTableSize in r15w (zero extended)
 getIndexYValue PROC ;USES rax, rcx, rdx, xmm0
@@ -127,7 +81,7 @@ VPADDD xmm3, xmm4, twoOnes			;add (0,0,1,1) to rounded (0,0,pointX,pointY) and s
 VBLENDPS xmm2, xmm3, xmm4, 2		;load (x0,y1) into xmm2
 VBLENDPS xmm1, xmm4, xmm3, 2		;load (x1,y0) into xmm1
 PSLLDQ xmm4, 8						;shift (x0,y0) to upper qword
-VBLENDPD xmm14, xmm4, xmm3, 1		;load (x0,y0,x1,y1) into xmm4
+VBLENDPD xmm14, xmm4, xmm3, 1		;load (x0,y0,x1,y1) into xmm14
 SUB rsp, 16
 VMOVDQU XMMWORD PTR[rbp-16], xmm14	;store (x0,y0,x1,y1) on stack
 
