@@ -95,15 +95,16 @@ double perlinNoise(double pointX, double pointY, unsigned char* hashTable, unsig
 	return interpolate(firstInterpolatedValueX, secondInterpolatedValueX, wieightY);
 }
 
-double __stdcall fractalPerlinNoise(double pointX, double pointY, double frequency, unsigned char numberOfOctaves, unsigned char* hashTable, unsigned short hashTableSize)
+double fractalPerlinNoise(double pointX, double pointY, double frequency, unsigned short hashTableSize, unsigned char* hashTable, unsigned char numberOfOctaves)
 {
 	double amplitude = 1.0;
 	double sum = 0.0;
 	double sumOfAmplitudes = 0.0;
 	for (int i = 0; i < numberOfOctaves; ++i)
 	{
-		sumOfAmplitudes += amplitude;
-		sum += perlinNoise(pointX * frequency, pointY * frequency, hashTable, hashTableSize) * amplitude;
+		sumOfAmplitudes += amplitude;//TODO repair
+		double pN = perlinNoise(pointX * frequency, pointY * frequency, hashTable, hashTableSize);
+		sum += pN * amplitude;
 		amplitude /= 2.0;
 		frequency *= 2.0;
 	}

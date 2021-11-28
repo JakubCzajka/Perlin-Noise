@@ -1,8 +1,12 @@
-﻿  JAcpp.cpp
+﻿  pch.cpp
+  JAcpp.cpp
+C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\JACpp\JAcpp.cpp(74,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\JACpp\JAcpp.cpp(76,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  dllmain.cpp
      Creating library C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\x64\Release\JACpp.lib and object C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\x64\Release\JACpp.exp
   Generating code
-  1 of 2 functions (50.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
+  5 of 6 functions (83.3%) were compiled, the rest were copied from previous compilation.
+    5 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   JACpp.vcxproj -> C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\x64\Release\JACpp.dll

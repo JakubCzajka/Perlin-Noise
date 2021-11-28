@@ -1,8 +1,4 @@
-﻿  pch.cpp
-  dllmain.cpp
-  JAcpp.cpp
+﻿  JAcpp.cpp
 C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\JACpp\JAcpp.cpp(74,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
 C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\JACpp\JAcpp.cpp(76,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
-     Creating library C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\x64\Debug\JACpp.lib and object C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\x64\Debug\JACpp.exp
   JACpp.vcxproj -> C:\Users\Kuba\Desktop\TEMP Studia\JA\Perlin-Noise\Perlin-Noise\x64\Debug\JACpp.dll

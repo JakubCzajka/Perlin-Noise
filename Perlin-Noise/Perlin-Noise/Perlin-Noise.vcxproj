@@ -118,6 +118,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Optimization>MaxSpeed</Optimization>
     </ClCompile>
     <Link>
       <AdditionalDependencies>opencv_world454.lib</AdditionalDependencies>

@@ -1,3 +1,4 @@
 LIBRARY JACpp
 EXPORTS
 fractalPerlinNoise
+perlinNoise
