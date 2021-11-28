@@ -57,8 +57,6 @@ void main(array<String^>^ args)
                     for (int j = 0; j < width; ++j)
                     {
                         unsigned char val = 255 * (((FractalPerlinFunc)(i, j, 0.01, 7, H_HASH, HASH_SIZE) + 1) / 2.0);
-                        //                //test.push_back(perlinNoise(i * 0.01, j * 0.01, H_HASH, HASH_SIZE));
-                        //                //test.push_back(fractalPerlinNoise(i, j, 0.01, 1, H_HASH, HASH_SIZE));
                         cv::Vec3b color;
                         color.val[0] = val;
                         color.val[1] = val;
@@ -66,9 +64,6 @@ void main(array<String^>^ args)
                         img.at<cv::Vec3b>(cv::Point(j, i)) = color;
                     }
                 }
-                //       // std::sort(test.begin(), test.end());
-                //       // std::cout << test.front() << "    " << test.back() << "\n";
-
 
                 cv::imshow(windowName, img);
 

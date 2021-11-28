@@ -6,7 +6,9 @@
 *.lo
 *.o
 *.obj
-
+# My addons
+\Perlin-Noise\.vs\*
+*.ipch
 # Precompiled Headers
 *.gch
 *.pch

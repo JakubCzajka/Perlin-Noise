@@ -86,37 +86,36 @@ SUB rsp, 16
 VMOVDQU XMMWORD PTR[rbp-16], xmm14	;store (x0,y0,x1,y1) on stack
 
 ;convert dwords to doubles
-VCVTDQ2PD ymm4, xmm4
-VCVTDQ2PD ymm3, xmm3
-VCVTDQ2PD ymm2, xmm2
-VCVTDQ2PD ymm1, xmm1
+VCVTDQ2PD ymm14, xmm4
+VCVTDQ2PD ymm13, xmm3
+VCVTDQ2PD ymm12, xmm2
+VCVTDQ2PD ymm11, xmm1
 
-VINSERTF128 ymm13, ymm4, xmm1, 0	;load (x0,y0,x1,y0) into ymm13
-VINSERTF128 ymm14, ymm3, xmm2, 1	;load (x0,y1,x1,y1) into ymm14
+
 
 MOVD xmm0, DWORD PTR[rbp-8]			;load y0 to xmm0
 CALL getIndexYValue					;load hashTable[indexY] to rcx
 MOVD xmm0, DWORD PTR[rbp-4]			;load x0 to xmm0
 CALL getIndexXValue					;load hashTable[indexX] to rax
-CALL getGradient					;calculate (x0, y0) gradient and load it into xmm0
-MOVUPD xmm12, xmm0					;load (x0, y0) gradient into xmm14
+CALL getGradient					;calculate gradient(x0, y0) and load it into xmm0
+MOVUPD xmm10, xmm0					;load gradient(x0, y0) into xmm10
 MOVD xmm0, DWORD PTR[rbp-12]		;load x1 to xmm0
 CALL getIndexXValue					;load hashTable[indexX] to rax
 CALL getGradient					;calculate (x1, y0) gradient and load it into xmm0
-VINSERTF128 ymm12, ymm0, xmm12, 1	;load (gradient(x0,y0),gradient(x1,y0)) into ymm12
+MOVUPD xmm9, xmm0					;load gradient(x1,y0) into xmm9
 
 MOVD xmm0, DWORD PTR[rbp-16]		;load y1 to xmm0
 CALL getIndexYValue					;load hashTable[indexY] to rcx
 MOVD xmm0, DWORD PTR[rbp-4]			;load x0 to xmm0
 CALL getIndexXValue					;load hashTable[indexX] to rax
-CALL getGradient					;calculate (x0, y1) gradient and load it into xmm0
-MOVUPD xmm11, xmm0					;load (x0, y1) gradient into xmm13
+CALL getGradient					;calculate gradient(x0, y1) and load it into xmm0
+MOVUPD xmm8, xmm0					;load (x0, y1) gradient into xmm8
 MOVD xmm0, DWORD PTR[rbp-12]		;load x1 to xmm0
 CALL getIndexXValue					;load hashTable[indexX] to rax
 CALL getGradient					;calculate (x1, y1) gradient and load it into xmm0
-VINSERTF128 ymm11, ymm0, xmm11, 1	;load (gradient(x0,y1),gradient(x1,y1)) into ymm11
+MOVUPD xmm7, xmm0					;load gradient(x1,y1) into xmm7
 
-VINSERTF128 ymm15, ymm15, xmm15, 1	;load (pointX,pointY,pointX,pointY) into ymm15
+;VINSERTF128 ymm15, ymm15, xmm15, 1	;load (pointX,pointY,pointX,pointY) into ymm15
 
 MOV rsp, rbp						;restore rsp and rbp
 POP rbp
